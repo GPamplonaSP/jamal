@@ -20,6 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = move * speed;
+        rb.linearVelocity = move * speed;
     }
 }
