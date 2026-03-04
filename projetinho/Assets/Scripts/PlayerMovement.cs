@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
-    Rigidbody2D rb;
-    Vector2 move;
+    private Rigidbody2D rb;
+    private Vector2 moveInput;
 
     void Start()
     {
@@ -13,13 +13,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        move.x = Input.GetAxisRaw("Horizontal");
-        move.y = Input.GetAxisRaw("Vertical");
-        move.Normalize();
+        moveInput.x = Input.GetAxisRaw("Horizontal");
+        moveInput.y = Input.GetAxisRaw("Vertical");
+        moveInput.Normalize();
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = move * speed;
+        // Em vez de zerar a velocidade, usamos AddForce
+        rb.AddForce(moveInput * speed);
     }
 }
